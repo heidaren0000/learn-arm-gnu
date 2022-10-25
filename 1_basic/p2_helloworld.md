@@ -82,9 +82,9 @@ Disassembly of section .text:
 
 第二部分是 `.data` 包含了程序的 `.data`区
 
-后面接着是对程序的反汇编, 结合之前书中对于数据处理指令的格式,
+后面接着是对程序的反汇编, 结合之前书中对于数据处理指令的格式
 
-![指令格式](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/data instruction format.png)
+![指令格式](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/data%20instruction%20format.png)
 
 ![](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/20221025_174127_temp.jpg)
 
