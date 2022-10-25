@@ -84,7 +84,7 @@ Disassembly of section .text:
 
 后面接着是对程序的反汇编, 结合之前书中对于数据处理指令的格式,
 
-![](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/data instruction format.png)
+![指令格式](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/data instruction format.png)
 
 ![](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/20221025_174127_temp.jpg)
 
