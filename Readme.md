@@ -24,14 +24,16 @@
    1. 逻辑判断和分支语句
 6. system
    1. linux 系统调用
-7. GPIO
-8. UART
-9. I2C
-10. thumb
-11. floatpoint
-12. NEON
-13. bare_metal
-14. 64bit
+   1. 软中断
+7. interrupt
+8. GPIO
+9. UART
+10. I2C
+11. thumb
+12. floatpoint
+13. NEON
+14. bare_metal
+15. 64bit
 
 ## books
 
