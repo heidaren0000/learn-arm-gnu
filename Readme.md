@@ -11,29 +11,35 @@
    2. 常用命令行工具和使用方法
    3. arm 体系结构简略了解
    4. 常用汇编指令
-2. memory
+2. adding
+   1. 字节序
+   2. 有符号和无符号整数的编码表示
+   3. 位移运算
+   4. 使用 CPSR 寄存器来表示溢出
+   5. 整数加减乘除
+3. control_flow
+   1. 
+
+4. memory
    1. 内存访问有关指令
    2. 寻址模式
-3. arithemtic
-   1. 有符号和无符号整数的编码表示
-   2. 加减乘除
-4. subroutine_stack
+5. subroutine_stack
    1. 子程序相关指令
    2. 栈的使用
-5. logic
+6. logic
    1. 逻辑判断和分支语句
-6. system
+7. system
    1. linux 系统调用
    1. 软中断
-7. interrupt
-8. GPIO
-9. UART
-10. I2C
-11. thumb
-12. floatpoint
-13. NEON
-14. bare_metal
-15. 64bit
+8. interrupt
+9. GPIO
+10. UART
+11. I2C
+12. thumb
+13. floatpoint
+14. NEON
+15. bare_metal
+16. 64bit
 
 ## books
 
