@@ -86,6 +86,8 @@ mov r1, r2, lsl #1 ; 反汇编之后得到 e1a01082 lsl     r1, r2, #1
 lsl r1, r2, #1 	   ; 反汇编之后得到 e1a01082 lsl     r1, r2, #1
 ```
 
+前面也提到, arm 没有原生的位移指令. 本质上都是 mov. 那个 1101 的 opcode 最早就是给 mov 准备的, 所以可以简要概括成换皮 mov.
+
 借助这个例子可以更好的理解 助记词(mnemonics), 指令(instruction), 操作码(opcode), 机器码(machine code) 之间的关系: 不同的助记词用的可能是同一个 opcode, 同一个助记词用的也可能是不同的 opcode. 
 
 ```asm
@@ -197,7 +199,7 @@ mov r2, #0x400		; 反汇编 e3a02b01 mov  r2, #1024
 
 ![ScreenShot2022-10-31at8.24.24PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%208.24.24%20PM.png)
 
-##### 总结
+### 总结
 
 我简单总结一下:
 
