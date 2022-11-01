@@ -130,7 +130,9 @@ mov r1, r2, lsl #1	; 反汇编 e1a01082 lsl  r1, r2, #1
 
 截图来自 DDI0406B 的 490 页 
 
-四条指令:
+第四条指令:
+
+
 
 ```asm
 ; cond 	  op  op1				op2
