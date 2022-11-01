@@ -65,11 +65,11 @@ mov r2, #0x6e3a		; 反汇编 e3062e3a movw r2, #28218
 
 
 
-![ScreenShot2022-10-31at9.37.43PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 9.37.43 PM.png)
+![ScreenShot2022-10-31at9.37.43PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%209.37.43%20PM.png)
 
 截图来自 DDI0406B 210页
 
-![ScreenShot2022-10-31at7.57.19PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 7.57.19 PM.png)
+![ScreenShot2022-10-31at7.57.19PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%207.57.19%20PM.png)
 
 截图来自 DDI0406B 的 506 页
 
@@ -92,13 +92,13 @@ mov r1, r2			; 反汇编 e1a01002 mov  r1, r2
 
 
 
-![ScreenShot2022-10-31at8.31.55PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 8.31.55 PM.png)
+![ScreenShot2022-10-31at8.31.55PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%208.31.55%20PM.png)
 
-![ScreenShot2022-10-31at10.20.49PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 10.20.49 PM.png)
+![ScreenShot2022-10-31at10.20.49PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%2010.20.49%20PM.png)
 
 截图来自 DDI0406B 211 页
 
-![ScreenShot2022-10-31at8.26.18PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 8.26.18 PM.png)
+![ScreenShot2022-10-31at8.26.18PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%208.26.18%20PM.png)
 
 截图来自 DDI0406B 的 508 页 
 
@@ -120,93 +120,55 @@ mov r1, r2			; 反汇编 e1a01002 mov  r1, r2
 mov r1, r2, lsl #1	; 反汇编 e1a01082 lsl  r1, r2, #1
 ```
 
-![ScreenShot2022-10-31at11.43.00PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 11.43.00 PM.png)
+![ScreenShot2022-10-31at11.43.00PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%2011.43.00%20PM.png)
 
 ![qq9y5r](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/qq9y5r.png)
 
 截图来自 DDI0406B 的 211 页 
 
-![ScreenShot2022-10-31at11.47.19PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 11.47.19 PM.png)
+![ScreenShot2022-10-31at11.47.19PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%2011.47.19%20PM.png)
 
 截图来自 DDI0406B 的 490 页 
 
 第四条指令:
 
-
-
 ```asm
 ; cond 	  op  op1				op2
 ; 1110 00 1 11010 000000101011 0000 0001
-; cond 	  op  op1				op2
+; cond 	 	op	  rn
 ; 1110 001 11010 0000 0010101100000001
+; cond 	 	op	 s 		 rd		imm12
+; 1110 00 1 1101 0 0000 0010 101100000001
 mov r2, #0x400		; 反汇编 e3a02b01 mov  r2, #1024
 ```
 
 
 
-![ScreenShot2022-10-31at8.24.24PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen Shot 2022-10-31 at 8.24.24 PM.png)
+![ScreenShot2022-10-31at8.24.24PM](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screen%20Shot%202022-10-31%20at%208.24.24%20PM.png)
+
+##### 总结
+
+我简单总结一下:
+
+对于 arm v7 而言, 需要新的思维模式. 
+
+- 不同 mnemonic 的 opcode 可能是相同的
+- 虽然 mnemonic 是相同的, 不见得 opcode 就是相同的
 
 #### 问题3:  `operand2` 是什么
 
-在 smith 的书里面这个 operand2 就很有意思. 我在这个上面卡了好久, 这就整的非常奇怪, 因为, 立即数和寄存器, 也是 operand 啊..... 
+在 smith 的书里面这个 operand2 就很有意思. 我在这个上面卡了好久, 这就整的非常奇怪, 因为, 立即数和寄存器, 也是 operand 啊..... 你整个 operand2 算什么意思.
 
+后来看了 DUI0473M(11.3节) , 原来这个 operand2 是 flexiable second operand  的简称, 在 ARM 和 Thumb 中有很多数据处理指令都支持这种 operand2, 包括 MOV, ADD 等.
 
+他有下面两种格式
 
 - 寄存器作为 operand2 + 位移
 - 12位 operand2 , 其中 8 bit 数据, 4 bit 用来保存位移数据
 
-下面咱们仔细分析一下, 结合字节码和ARM官方的字节码文档:
+​	**除此之外, 如果使用 operand2 的指令如果使用了 flag 寄存器, 那么在指令结束之后, flag 寄存器的 carry flag 将会变成 operand2 的 bit[32], 有关 flag 寄存器会在后面有关算数的笔记中提到.**
 
-> 我们重新写一下这个程序, 把使用 "oprend2" 方法寻址的指令放在一起, 使用寄存器寻址的放在一起, 使用立即数寻址的放在一起, 进行一下标记. 
->
-> ```bash
-> daren@localhost:~/WorkspaceDior/learn-arm-gnu/2_add$ objdump -s -d ./p1_1_moving_inspect
-> 
-> ./p1_1_moving_inspect:     file format elf32-littlearm
-> 
-> Contents of section .text:
-> 10054 3a2e06e3 5d2f44e3 0210a0e1 8210a0e1  :...]/D.........
-> 10064 a210a0e1 c210a0e1 e210a0e1 6210a0e1  ............b...
-> 10074 8210a0e1 a210a0e1 c210a0e1 e210a0e1  ................
-> 10084 6210a0e1 0110e0e3 0000a0e3 0170a0e3  b............p..
-> 10094 000000ef                             ....            
-> Contents of section .ARM.attributes:
-> 0000 41130000 00616561 62690001 09000000  A....aeabi......
-> 0010 06080801                             ....            
-> 
-> Disassembly of section .text:
-> 
-> 00010054 <_start>:
-> 10054:       e3062e3a        movw    r2, #28218      ; 0x6e3a ; 这个是 16 位立即数
-> 10058:       e3442f5d        movt    r2, #20317      ; 0x4f5d
-> 1005c:       e1a01002        mov     r1, r2  ; 这个是 寄存器 复制
-> ; 从这里开始就是 寄存器 + 位移
-> 10060:       e1a01082        lsl     r1, r2, #1
-> 10064:       e1a010a2        lsr     r1, r2, #1
-> 10068:       e1a010c2        asr     r1, r2, #1
-> 1006c:       e1a010e2        ror     r1, r2, #1
-> 10070:       e1a01062        rrx     r1, r2
-> 10074:       e1a01082        lsl     r1, r2, #1
-> 10078:       e1a010a2        lsr     r1, r2, #1
-> 1007c:       e1a010c2        asr     r1, r2, #1
-> 10080:       e1a010e2        ror     r1, r2, #1
-> 10084:       e1a01062        rrx     r1, r2
-> ; 下面是 8 bit 作为 immeidate number, 4 bit 作为位移,
-> 10088:       e3e01001        mvn     r1, #1 ; 被优化成了 mvn, 这个不是咱想要的
-> 1008c:       e3a02b01        mov     r2, #1024       ; 0x400 
-> 10090:       e3a03a01        mov     r3, #4096       ; 0x1000
-> 10094:       e3a00000        mov     r0, #0
-> 10098:       e3a07001        mov     r7, #1
-> 1009c:       ef000000        svc     0x00000000
-> ```
->
-> 结合一下文档, 以及之前的笔记:
->
-> ![指令格式](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/data%20instruction%20format.png)
->
-> ![](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/20221025_174127_temp.jpg)
->
-> 我们拆解一下这几个指令:
+> 这种 operand2 使用的意义在于它可以在一条指令中访问完整的 32 位寄存器空间, 提升效率.
 
 ### MOVT
 
