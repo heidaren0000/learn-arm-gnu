@@ -1,5 +1,3 @@
- 
-
 # p1_moving
 
 ## 1. 指令
@@ -14,37 +12,60 @@
 4. `mov rd, operand2` 使用
 5. `mov rd, operand2`
 
-> 这个 operand2 是什么呢? 在本笔记的[第七节](##7.-operand2)专门介绍了.
+> 这个 operand2 是什么呢? 在本笔记的[第六节](##6.-operand2)会介绍.
 
 ### MOVT
 
-### ADD/ADC
+把16位立即数存放到寄存器的高 16bit, 配合 `movw`(也就是16位立即数 mov 指令), 可以访问完整的 32 位寄存器空间. 
 
+```asm
+mov r2, #0x6e3a ; 16位立即数 mov 等同于 movw
+movt r2, #0x4f5d
+```
 
+为了方便寄存器访问, 还有一个 mov32 伪指令, 汇编器会在汇编之后自动把 mov32 换成 movw 和 movt 组合
+
+```asm
+mov32 r3, #0xABCDEF12  ; loads 0xABCDEF12 into R3
+```
 
 ## 2. 伪指令
 
-## 3. CPSR
+这代码里面没有出现新的伪指令. 前面提到的`mov32` 应该算一个
 
-## 4. 位移电路和支持的模式
-
-Barrel Shifter
+## 3. 位移电路和支持的位移
 
 ### 逻辑左移 LSL
 
+就是简单的左移, 从右边补上0
+
 ### 逻辑右移 LSR
+
+简单的右移, 在左边补上0
 
 ### 算数右移 ASR
 
+右移之后在左边补上之前的 MSB. 
+
+> 为啥没有算数左移呢? 这是因为可能会影响算数结果[quora](https://www.quora.com/Why-doesnt-arithmetic-left-shift-SAL-preserve-the-sign-bit-while-arithmetic-right-shift-does)
+
 ### 循环右移 RR
+
+右移, 但是把右边被移走的一位在左边补上.
 
 ### 拓展的循环右移 RRE
 
+循环右移, 但是把 flag 寄存器中的 carry flag 作为被右移的寄存器的第33位. 
 
+**这种右移在 arm 中一次只能移动 1 位, 所以在后面的拓展循环右移 rrx 中是不能指定位移次数的. 至于有关 flag 寄存器, 在 p2_adding 的笔记中会提到**
 
+### ARM 处理器中的位移电路
 
+在 arm 处理器中有位移电路(Barrel Shifter). 但是并没有任何原生的位移指令. 只能通过 MOV 这种数据操作指令来进行位移(如果你使用 LSL 这类指令的话, 反汇编之后你会发现他们的 opcode 和使用 LSL 位移的 mov 是一样的.) 这是因为位移电路在算数逻辑单元(ALU)之外, 位于加载第二个 operand 的位置上,  [第六节](##6.-operand2) 会详细介绍这个 operand2
 
-## 5. 16位立即数
+![knDwER](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/knDwER.png) 
+
+## 4. 16位立即数
 
 在代码中出现了直接使用 16 位立即数的例子. 如果你拿去问老师, 我估计他会当场暴走. 这个按照他的标准, 绝对是不合法的: 没有使用位移, 直接写了 16 位立即数.
 
@@ -56,7 +77,7 @@ mov r2, #0x6e3a
 
 参考资料: ARM 文档DUI0473M 的 404 页.
 
-## 6. 反汇编后'指令'变了
+## 5. 反汇编后'指令'变了
 
 下面这两行指令, 在汇编之后会产生相同的指令:
 
@@ -185,7 +206,7 @@ mov r2, #0x400		; 反汇编 e3a02b01 mov  r2, #1024
 - 不同 mnemonic 的 opcode 可能是相同的
 - 虽然 mnemonic 是相同的, 不见得 opcode 就是相同的
 
-## 7. operand2
+## 6. operand2
 
 在 smith 的书里面这个 operand2 就很有意思. 我在这个上面卡了好久, 这非常奇怪, 因为, 立即数和寄存器, 也是 operand 啊..... 你整个 operand2 算什么意思.
 
@@ -196,13 +217,62 @@ mov r2, #0x400		; 反汇编 e3a02b01 mov  r2, #1024
 - 寄存器作为 operand2 + 位移
 - 12位 operand2 , 其中 8 bit 数据, 4 bit 用来保存位移数据
 
-​	**除此之外, 如果使用 operand2 的指令如果使用了 flag 寄存器, 那么在指令结束之后, flag 寄存器的 carry flag 将会变成 operand2 的 bit[32], 有关 flag 寄存器会在后面有关算数的笔记中提到.**
-
 > 这种 operand2 使用的意义在于它可以在一条指令中访问完整的 32 位寄存器空间, 提升效率.
 
 ### 寄存器作为 operand2
 
 DUI0473M(11.5节)
 
+例子:
+
+```asm
+mov r1, r2, lsl #1	; 反汇编 e1a01082 lsl  r1, r2, #1
+```
+
+首先, 要确保指令确实支持这种 operand2, 一般使用寄存器作为 operand2 的数据处理指令都支持.
+
+接下来就在后面添加位移操作. 这里的位移不会更改 operand2 中寄存器的值.
+
+```asm
+; 可以实用的指令:
+	asr #n ; 1 <= n <= 32 算数右移
+	lsl #n ; 1 <= n <= 31 逻辑左移
+	lsr #n ; 1 <= n <= 32 算数左移
+	ror #n ; 1 <= n <= 31 循环右移
+	rrx	   ; 托展的循环右移	
+```
+
+除了把立即数常量作为位移量, 你还可以把寄存器中的值用来做位移量, 例如:
+
+```asm
+mov r1, r2, lsl r3 ; 把 R3 中的值作为位移量.
+; 这种方法需要注意两点:
+; 1. 只有存放位移量的寄存器的 LSB(least significt byte) 的8位会被用到,
+; 2. rrx 不能用(肯定不能用啊)
+```
+
 ### 立即数常量作为 operand2
 
+DUI0473M(11.4节)
+
+DDI0406B(A5.2.4节)
+
+例子:
+
+```asm
+mov r2, #0x400		; 反汇编 e3a02b01 mov  r2, #1024
+```
+
+这种方法就是老师上课讲到的 "合法立即数" 问题.
+
+立即数总共 12bit 高位的 4bit 用来存放位循环右移的次数(具体的位移次数是4bit的值乘以2). 低8bit 用来存放. 下面这张图概括的很好 (DDI0406B A5.2.4). 
+
+![e4SBTp](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/e4SBTp.png)
+
+​	**除此之外, 如果使用 operand2 的指令如果使用了 flag 寄存器, 那么在指令结束之后, flag 寄存器的 carry flag 将会变成 operand2 的 bit[31], 有关 flag 寄存器会在后面有关算数的笔记中提到.**
+
+**还要注意的一点是, 在 ARM 模式下的 operand2 常量的表示范围和 32位 Thumb 模式下的范围不同(32 位 thumb 使用的是 3 bit 存放位移量), 详见DDI0406B A6.3.2 **
+
+> 这个方式会不会和 16 位立即数冲突呢?
+>
+> 不会的. 汇编器有能力判断到底该采用什么 opcode
