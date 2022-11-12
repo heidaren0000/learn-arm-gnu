@@ -1,0 +1,172 @@
+{
+  "main": {
+    "id": "571be25e1b53ba76",
+    "type": "split",
+    "children": [
+      {
+        "id": "f174cf0bed03feda",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e9f6779103a7eca5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Readme.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3b8debbb9803cbac",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "39dbcd413b33389d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2_add/Readme.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8b1efd0095d4f35f",
+    "type": "split",
+    "children": [
+      {
+        "id": "d045f5f3c10994a4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9c3dcba8b1dde99f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "8e5a9d85a536a525",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "abe25d08df600509",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a9c615360d61c06b",
+    "type": "split",
+    "children": [
+      {
+        "id": "2ec1f00a70103970",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f9366a43f26073f2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2_add/Readme.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ae27a426dc7f141b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2_add/Readme.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "7df84f57c7a47e21",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "aca93908cef5ced9",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2_add/Readme.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "9c3dcba8b1dde99f",
+  "lastOpenFiles": [
+    "Readme.md",
+    "2_add/Readme.md",
+    "1_basic/p1_basic.md",
+    "2_add/0_前置知识.md",
+    "2_add/p1_moving.md",
+    "2_add/p2_adding.md",
+    "1_basic/Readme.md",
+    "1_basic/p2_helloworld.md"
+  ]
+}
