@@ -24,6 +24,15 @@ obdump -s -d p2_helloworld
 
 ## 运行时调试: GDB
 
+> 首先注意一点是, 在汇编的时候一定要使用 `-g` flag, 这样会在汇编之后确保调试需要的信息(例如 lable 的名字) 不被优化掉
+>
+> ```bash
+> as -g -o helloworld.o helloaorld.s
+> ld -o helloworld helloworld.o
+> ```
+>
+> 不然的话只能调试反汇编的指令, 没办法和源码映射起来
+
 这里使用 p2_helloworld 这个程序作为例子
 
 ![](https://cdn.jsdelivr.net/gh/heidaren0000/blogGallery@master/img/Screenshot_20221118_140508.png)

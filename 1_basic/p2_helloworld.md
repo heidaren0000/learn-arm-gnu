@@ -15,7 +15,7 @@
 
 ```asm
 _start: mov R0, #1          @ 1 = stdout
-        ldr R1, =helloworld @ string to print
+        ldr R1, =helloworld @ string to print 注意这个 = 符号可以取 helloworld 标签的首地址, 而不是 helloworld 的具体的值
         mov R2, #11         @ length of our string
         mov R7, #4          @ linux write system call
         svc 0               @ call linux to print
