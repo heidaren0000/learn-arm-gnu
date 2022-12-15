@@ -11,7 +11,7 @@
 
 toupper:
 @ save the registers we used
-            push    {r4-r5}         @ save registers we used
+            push    {r4-r12, lr}         @ save registers we used
             mov     r4, r1          @ r4 for backup address
             @ the loop is until byte pointed to by r1 is non-zero
 loop:       ldrb    r5, [r0], #1    @ post index addressing
@@ -29,6 +29,6 @@ cont:       @ endif
             bne     loop            @ continue if not 0
             sub     r0, r1, r4      @ get the length bu subrating the pointers
 
-            pop     {r4-r5}
+            pop     {r4-r12, lr}
             bx      lr              @ return to caller
 

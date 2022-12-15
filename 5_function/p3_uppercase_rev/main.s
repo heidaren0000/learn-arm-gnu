@@ -10,10 +10,15 @@
 _start: ldr r0, =instr  @ start of input string
         ldr r1, =outstr @ address of output string
 
+        @ preparing for calling
+        push {r0-r4} @ save state
         bl toupper              @ call routin
+        mov  r5, r0  @ save return code
+        pop  {r0-r4} @ store state
+
 @ set up the parameters to print out hex number
 @ and then call Linux to do it
-        mov     r2,     r0      @ return code is the length of the string
+        mov     r2,     r5      @ return code is the length of the string
         mov     r0,     #1      @ 1 = stdout
         ldr     r1,     =outstr @ string to print
         mov     r7,     #4      @ linux write system call
