@@ -1,16 +1,18 @@
-@
-@ demo of stack frame
-@
-@ by daren
+# p5_stack_frames
 
-.global _start
-_start:
+## stack frame
 
-    bl  adder
-    b   end
+当使用的变量超过了寄存器的数量怎么办?
 
+这时候我们可以在栈上开辟一段空间. 用来保存变量. 
 
+1. 在 subroutine 开始时`sp` = `sp` - 寄存器数量*4, 向下开辟一段空间用来存放数据
+2. 读写这段空白空间来保存变量, 可以使用偏移寻址访问
+3. 在 subroutine 结束之前, `sp` = `sp` + 寄存器数量*4, 让栈恢复回去
 
+注意在初始化 stack frame 后, 释放 steaks frame 之前, 不要进行栈操作. 所以要在 push 和 pop 之间使用 stack frame.
+
+```asm
 @ subroutine that add two numbers and return result
 adder: 
 @ save states
@@ -43,4 +45,5 @@ end:
         mov     r0, #0
         mov     r7, #1
         svc     0
+```
 
